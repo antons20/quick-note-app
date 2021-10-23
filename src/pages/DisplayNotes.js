@@ -12,7 +12,7 @@ const styles = {
 
 
 function DisplayNotes(props) {
-    const { notes, deleteNote, classes } = props;
+    const { notes, deleteNote, classes, changeView} = props;
     return (
         <>
         <List>
@@ -23,7 +23,7 @@ function DisplayNotes(props) {
             })
           }
         </List>
-        <Fab className={classes.fab}> 
+        <Fab className={classes.fab} onClick={() => changeView()}> 
           <Add />
         </Fab>
         </>

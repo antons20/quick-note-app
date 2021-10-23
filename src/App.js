@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container } from "@material-ui/core"
 import DisplayNotes from "./pages/DisplayNotes";
 import AddNote from "./pages/AddNote";
+import { Switch, Route } from "react-router";
 
 class App extends Component {
   constructor(props) {
@@ -42,8 +43,14 @@ class App extends Component {
     const { notes } = this.state;
     return (
       <Container>
-        <DisplayNotes notes = {notes} deleteNote= {this.deleteNote} />
-        <AddNote />
+          <Switch>
+            <Route exact path="/">
+              <DisplayNotes notes = {notes} deleteNote= {this.deleteNote} />
+            </Route>
+            <Route path="/add">
+              <AddNote />
+            </Route>
+          </Switch>
       </Container>
     );
   }
