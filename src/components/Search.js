@@ -6,6 +6,7 @@ function Search(props) {
         <SearchBar
             value={query}
             onChange={updateQuery}
+            onCancelSearch={() => {updateQuery("")}}
         />
     )
 }
