@@ -9,9 +9,21 @@ class UpsertNote extends Component {
         this.state = {
             title: "", 
             text: "", 
+
         }
     }
 
+    componentDidMount() {
+        const { state } = this.props.location;
+        if (state) {
+            const { title, text, id } = state;
+            this.setState({
+                title, 
+                text, 
+                id 
+            })
+        }
+    }
 
     updateTitle = (event) => {
         this.setState({

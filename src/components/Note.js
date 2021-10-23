@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 import { List, ListItem, ListItemText, Collapse, ListItemIcon, Button} from "@material-ui/core";
-import { ExpandMore, ExpandLess , Delete} from "@material-ui/icons"
+import { ExpandMore, ExpandLess , Delete, Edit} from "@material-ui/icons"
+import { Link } from "react-router-dom";
 
 
 class Note extends Component {
@@ -27,6 +28,20 @@ class Note extends Component {
                     </ListItemIcon>
                     <ListItemText primary = {note.title}/>
 
+                    <ListItemIcon>
+                        <Link to={{
+                            pathname: "/edit", 
+                            state: { 
+                                title: note.title, 
+                                text: note.text,
+                                id: note.id
+                            }
+                        }}>
+                            <Button> 
+                                <Edit />
+                            </Button>
+                        </Link>
+                    </ListItemIcon>
 
                     <ListItemIcon>
                         <Button onClick={() => deleteNote(note)}> 
