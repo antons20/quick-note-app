@@ -1,6 +1,7 @@
 import {List, Fab, withStyles } from "@material-ui/core"
 import { Add } from "@material-ui/icons";
 import Note from "../components/Note";
+import { Link } from "react-router-dom";
 
 const styles = {
     fab: {
@@ -12,20 +13,23 @@ const styles = {
 
 
 function DisplayNotes(props) {
-    const { notes, deleteNote, classes, changeView} = props;
+    const { notes, deleteNote, classes, } = props;
     return (
         <>
         <List>
           {
             notes.map((note, index) => {
-              return <Note note = {note} deleteNote = {deleteNote}/>
+              return <Note key = {index} note = {note} deleteNote = {deleteNote}/>
 
             })
           }
         </List>
-        <Fab className={classes.fab} onClick={() => changeView()}> 
-          <Add />
-        </Fab>
+        <Link to="/add">
+            <Fab className={classes.fab} > 
+                <Add />
+            </Fab>
+        </Link>
+
         </>
     );
         }
