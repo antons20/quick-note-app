@@ -1,7 +1,17 @@
 import React, { Component } from "react";
-import { Container, List } from "@material-ui/core"
+import { Container, List, Fab, withStyles } from "@material-ui/core"
+import { Add } from "@material-ui/icons";
 import Note from "./components/Note";
 
+const styles = {
+  fab: {
+    position: "absolute",
+    bottom: "2rem",
+    right: "2rem",
+  }
+
+
+}
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +37,17 @@ class App extends Component {
     };
   }
 
+
+  deleteNote = (note) => {
+    this.setState((state) => {
+      return {
+        notes: state.notes.filter(
+          (n) => n.id !== note.id
+        )
+      }
+    });
+  }
+
   render() {
     const { notes } = this.state;
     return (
@@ -34,16 +55,17 @@ class App extends Component {
         <List>
           {
             notes.map((note, index) => {
-              return <Note note = {note} />
+              return <Note note = {note} deleteNote = {this.deleteNote}/>
 
             })
           }
         </List>
-
-
+        <Fab className={this.props.classes.fab}> 
+          <Add />
+        </Fab>
       </Container>
-    )
+    );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
