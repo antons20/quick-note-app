@@ -1,6 +1,19 @@
 import React, { Component } from "react";
-import { Button, FormControl, TextField } from "@material-ui/core";
+import { Button, FormControl, TextField, Paper } from "@material-ui/core";
 import { withRouter } from "react-router";
+
+const styles = {
+    form: {
+        marginTop: "2rem",
+        marginBottom: "1rem",
+        padding: "1rem"
+    },
+    paper: {
+        marginBottom: "1rem",
+        
+    }
+}
+
 
 
 class UpsertNote extends Component {
@@ -9,7 +22,6 @@ class UpsertNote extends Component {
         this.state = {
             title: "", 
             text: "", 
-
         }
     }
 
@@ -52,26 +64,31 @@ class UpsertNote extends Component {
     render() {
         const { title, text } = this.state;
         return (
-            <form>
-                <FormControl fullWidth>
-                    <TextField 
-                    label = "title" 
-                    variant="outlined"
-                    value = {title}
-                    onChange = {this.updateTitle}
-                    />
-                </FormControl>
-                <FormControl fullWidth>
-                    <TextField 
-                        label = "text" 
-                        variant ="outlined"
-                        multiline
-                        rows={4}
-                        value = {text}
-                        onChange={this.updateText}
-                        
-                    />
-                </FormControl>
+            <form style={styles.form}>
+                <Paper elevation={3} style = {styles.paper}>
+                    <FormControl fullWidth>
+                        <TextField 
+                        label = "title" 
+                        variant="outlined"
+                        value = {title}
+                        onChange = {this.updateTitle}
+                        />
+                    </FormControl>
+                </Paper>
+
+                <Paper elevation={3} style = {styles.paper}>
+                    <FormControl fullWidth>
+                        <TextField 
+                            label = "text" 
+                            variant ="outlined"
+                            multiline
+                            rows={6}
+                            value = {text}
+                            onChange={this.updateText}
+                            
+                        />
+                    </FormControl>
+                </Paper>
                 <Button 
                     color="secondary" 
                     onClick={this.handleCancel} 
